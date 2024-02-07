@@ -21,6 +21,7 @@ public class UpdateEmployeeForm {
   /** 性別 */
   private String gender;
   /** 入社日 */
+  @NotNull(message = "入社日は必須です")
   private Date hireDate;
   /** メールアドレス */
   @NotEmpty(message = "メールアドレスは必須です")

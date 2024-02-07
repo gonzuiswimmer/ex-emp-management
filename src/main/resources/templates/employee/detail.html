@@ -51,6 +51,9 @@
                   <tr>
                     <th nowrap>従業員名</th>
                     <td>
+                      <label th:errors="*{name}" class="error-messages">
+                        error_message
+                      </label>
                       <label
                         class="control-label"
                         style="color: red"
@@ -106,6 +109,9 @@
                   <tr>
                     <th nowrap>入社日</th>
                     <td>
+                      <label th:errors="*{hireDate}" class="error-messages">
+                        error_message
+                      </label>
                       <label
                       class="control-label"
                       style="color: red"
@@ -123,6 +129,9 @@
                   <tr>
                     <th nowrap>メールアドレス</th>
                     <td>
+                      <label th:errors="*{mailAddress}" class="error-messages">
+                        error_message
+                      </label>
                       <label
                       class="control-label"
                       style="color: red"
@@ -141,6 +150,9 @@
                   <tr>
                     <th nowrap>郵便番号</th>
                     <td>
+                      <label th:errors="*{zipCode}" class="error-messages">
+                        error_message
+                      </label>
                       <label
                       class="control-label"
                       style="color: red"
@@ -159,6 +171,9 @@
                   <tr>
                     <th nowrap>住所</th>
                     <td>
+                      <label th:errors="*{address}" class="error-messages">
+                        error_message
+                      </label>
                       <label
                       class="control-label"
                       style="color: red"
@@ -177,6 +192,9 @@
                   <tr>
                     <th nowrap>電話番号</th>
                     <td>
+                      <label th:errors="*{telephone}" class="error-messages">
+                        error_message
+                      </label>
                       <label
                       class="control-label"
                       style="color: red"
@@ -195,6 +213,9 @@
                   <tr>
                     <th nowrap>給料</th>
                     <td>
+                      <label th:errors="*{salary}" class="error-messages">
+                        error_message
+                      </label>
                       <label
                       class="control-label"
                       style="color: red"
@@ -213,6 +234,9 @@
                   <tr>
                     <th nowrap>特性</th>
                     <td>
+                      <label th:errors="*{characteristics}" class="error-messages">
+                        error_message
+                      </label>
                       <label
                       class="control-label"
                       style="color: red"
@@ -233,7 +257,7 @@
                     <th nowrap>扶養人数</th>
                     <td>
                       <label th:errors="*{dependentsCount}" class="error-messages">
-                        扶養人数を入力してください
+                        error_message
                       </label>
                       <label
                         class="control-label"
