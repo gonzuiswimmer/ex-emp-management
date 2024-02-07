@@ -53,16 +53,33 @@ public class EmployeeRepostitory {
         WHERE id = :id ;
     """;
 
+  /**
+   * 管理者一覧を取得する.
+   * 
+   * @return List<Employee> 管理者リスト
+   */
   public List<Employee> findAll(){
     SqlParameterSource param = new MapSqlParameterSource();
     return template.query(FIND_ALL_SQL, param, EMPLOYEE_ROW_MAPPER);
   }
 
+  /**
+   * idをもとに該当の管理者情報を返す.
+   * 
+   * @param id ID
+   * @return  Employee 管理者オブジェクト
+   */
   public Employee load(Integer id){
     SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
     return template.queryForObject(LOAD_SQL, param, EMPLOYEE_ROW_MAPPER);
   }
 
+  /**
+   * 管理者情報を更新する.
+   * 
+   * @param emp 管理者オブジェクト
+   * @return void
+   */
   public void update(Employee emp){
     SqlParameterSource param = new BeanPropertySqlParameterSource(emp);
     template.update(UPDATE_SQL, param);
