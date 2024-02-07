@@ -31,7 +31,7 @@ public class AdministratorRepository {
   };
 
   private static final String INSERT_SQL = """
-    INSERT INTO adminisrators
+    INSERT INTO administrators
       (name, mail_address, password)
         VALUES (:name, :mail_address, :password);
   """;
