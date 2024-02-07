@@ -2,9 +2,7 @@ package com.example.controller;
 
 import java.util.List;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,8 +12,7 @@ import com.example.form.UpdateEmployeeForm;
 import com.example.service.EmployeeService;
 
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
+import org.springframework.web.bind.annotation.PostMapping;
 
 
 @Controller
@@ -50,10 +47,12 @@ public class EmployeeController {
    * @param form
    * @return 従業員一覧画面へリダイレクト
    */
-  @GetMapping("/update")
+  @PostMapping("/update")
   public String update(UpdateEmployeeForm form) {
     Employee emp = service.showDetail(Integer.parseInt(form.getId()));
+    System.out.println(emp);
     emp.setDependentsCount(Integer.parseInt(form.getDependentsCount()));
+    System.out.println(emp);
     service.Update(emp);
     return "redirect:/employee/showList";
   }
