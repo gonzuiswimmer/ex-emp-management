@@ -18,12 +18,14 @@ public class EmployeeRepostitory {
   private static final RowMapper<Employee> EMPLOYEE_ROW_MAPPER =
   //  (rs, i) -> {
   //   Employee emp = new Employee();
+  //   emp.setId(rs.getInt("id"));
   //   emp.setName(rs.getString("name"));
   //   emp.setImage(rs.getString("iamge"));
   //   emp.setGender(rs.getString("gender"));
   //   emp.setHireDate(rs.getDate("hire_date"));
   //   emp.setMailAddress(rs.getString("mail_address"));
   //   emp.setZipCode(rs.getString("zip_code"));
+  //   emp.setAddress(rs.getString("address"));
   //   emp.setTelephone(rs.getString("telephone"));
   //   emp.setSalary(rs.getInt("salary"));
   //   emp.setCharacteristics(rs.getString("characteristics"));
@@ -36,20 +38,20 @@ public class EmployeeRepostitory {
   private NamedParameterJdbcTemplate template;
 
   private static final String FIND_ALL_SQL = """
-    SELECT name, image, gender, hire_date, mail_address, zip_code, telephone, salary, characteristics, dependents_count
+    SELECT id, name, image, gender, hire_date, mail_address, zip_code, address, telephone, salary, characteristics, dependents_count
       FROM employees
         ORDER BY hire_date DESC;
   """;
   
   private static final String LOAD_SQL = """
-    SELECT name, image, gender, hire_date, mail_address, zip_code, telephone, salary, characteristics, dependents_count
+    SELECT name, image, gender, hire_date, mail_address, zip_code, address, telephone, salary, characteristics, dependents_count
       FROM employees
         WHERE id = :id ;
   """;
 
   private static final String UPDATE_SQL = """
-    INSERT INTO employees (name, image, gender, hire_date, mail_address, zip_code, telephone, salary, characteristics, dependents_count)
-      VALUES (:name, :image, :gender, :hire_date, :mail_address, :zip_code, :telephone, :salary, :characteristics, :dependents_count)
+    INSERT INTO employees (name, image, gender, hire_date, mail_address, zip_code, address, telephone, salary, characteristics, dependents_count)
+      VALUES (:name, :image, :gender, :hire_date, :mail_address, :zip_code, :address, :telephone, :salary, :characteristics, :dependents_count)
         WHERE id = :id ;
     """;
 
