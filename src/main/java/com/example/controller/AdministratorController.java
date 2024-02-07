@@ -4,6 +4,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.domain.Administrator;
@@ -15,10 +17,6 @@ import jakarta.servlet.http.HttpSession;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
-
-
 
 
 @Controller
@@ -48,7 +46,7 @@ public class AdministratorController {
    * @return 管理者登録画面
    */
   @GetMapping("/toInsert")
-  public String toInsert(InsertAdministratorForm form) {
+  public String toInsert(InsertAdministratorForm form, Model model) {
     return "administrator/insert";
   }
 
@@ -59,7 +57,15 @@ public class AdministratorController {
    * @return / リダイレクト
    */
   @PostMapping("/insert")
-  public String insert(InsertAdministratorForm form) {
+  public String insert(
+    @Validated
+    InsertAdministratorForm form,
+    BindingResult rs,
+    Model model
+  ) {
+    if(rs.hasErrors()){
+      return toInsert(form, model);
+    }
     Administrator admin = new Administrator();
     BeanUtils.copyProperties(form, admin);
 

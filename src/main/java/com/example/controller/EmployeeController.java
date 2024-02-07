@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.domain.Employee;
@@ -48,14 +50,20 @@ public class EmployeeController {
    * @return 従業員一覧画面へリダイレクト
    */
   @PostMapping("/update")
-  public String update(UpdateEmployeeForm form) {
-    Employee emp = service.showDetail(Integer.parseInt(form.getId()));
-    System.out.println(emp);
-    emp.setDependentsCount(Integer.parseInt(form.getDependentsCount()));
-    System.out.println(emp);
-    service.Update(emp);
-    return "redirect:/employee/showList";
-  }
+  public String update(
+    @Validated
+    UpdateEmployeeForm form,
+    BindingResult rs,
+    Model model) {
+      if (rs.hasErrors()) {
+        System.out.println("エラーの発生");
+        return showDetail(form.getId(),model,form);
+      }
+      Employee emp = service.showDetail(Integer.parseInt(form.getId()));
+      emp.setDependentsCount(Integer.parseInt(form.getDependentsCount()));
+      service.Update(emp);
+      return "redirect:/employee/showList";
+    }
   
     
 }
