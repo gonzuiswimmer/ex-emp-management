@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.domain.Administrator;
 import com.example.form.InsertAdministratorForm;
+import com.example.form.LoginForm;
 import com.example.service.AdministratorService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 
 
@@ -19,6 +19,18 @@ import org.springframework.web.bind.annotation.RequestBody;
 public class AdministratorController {
   @Autowired
   private AdministratorService service;
+
+  /**
+   * ログイン画面にフォワード.
+   * 
+   * @param form
+   * @return ログイン画面
+   */
+  @GetMapping("/")
+  public String toLogin(LoginForm form) {
+    return "administrator/login";
+  }
+  
 
   /**
    * フォーム情報を登録し、管理者登録画面へフォワード.
