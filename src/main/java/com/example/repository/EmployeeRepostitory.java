@@ -25,7 +25,7 @@ public class EmployeeRepostitory {
   //   emp.setMailAddress(rs.getString("mail_address"));
   //   emp.setZipCode(rs.getString("zip_code"));
   //   emp.setTelephone(rs.getString("telephone"));
-  //   emp.setSalary(rs.getInt("saraly"));
+  //   emp.setSalary(rs.getInt("salary"));
   //   emp.setCharacteristics(rs.getString("characteristics"));
   //   emp.setDependentsCount(rs.getInt("dependents_count"));
   //   return emp;
@@ -36,20 +36,20 @@ public class EmployeeRepostitory {
   private NamedParameterJdbcTemplate template;
 
   private static final String FIND_ALL_SQL = """
-    SELECT name, image, gender, hire_date, mail_address, zip_code, telephone, saraly, characteristics, dependents_count
+    SELECT name, image, gender, hire_date, mail_address, zip_code, telephone, salary, characteristics, dependents_count
       FROM employees
         ORDER BY hire_date DESC;
   """;
   
   private static final String LOAD_SQL = """
-    SELECT name, image, gender, hire_date, mail_address, zip_code, telephone, saraly, characteristics, dependents_count
+    SELECT name, image, gender, hire_date, mail_address, zip_code, telephone, salary, characteristics, dependents_count
       FROM employees
         WHERE id = :id ;
   """;
 
   private static final String UPDATE_SQL = """
-    INSERT INTO employees (name, image, gender, hire_date, mail_address, zip_code, telephone, saraly, characteristics, dependents_count)
-      VALUES (:name, :image, :gender, :hire_date, :mail_address, :zip_code, :telephone, :saraly, :characteristics, :dependents_count)
+    INSERT INTO employees (name, image, gender, hire_date, mail_address, zip_code, telephone, salary, characteristics, dependents_count)
+      VALUES (:name, :image, :gender, :hire_date, :mail_address, :zip_code, :telephone, :salary, :characteristics, :dependents_count)
         WHERE id = :id ;
     """;
 
