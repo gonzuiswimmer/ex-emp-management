@@ -15,6 +15,8 @@ import jakarta.servlet.http.HttpSession;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 
@@ -65,6 +67,13 @@ public class AdministratorController {
     return "redirect:/";
   }
   
+  /**
+   * ログイン処理.
+   * 
+   * @param form
+   * @param model
+   * @return
+   */
   @PostMapping("/login")
   public String login(LoginForm form, Model model) {
     Administrator admin = service.login(form.getMailAddress(), form.getPassword());
@@ -76,6 +85,18 @@ public class AdministratorController {
       session.setAttribute("administratorName", admin.getName());
       return "redirect:/employee/showList";
     }
+  }
+
+  /**
+   * ログアウト処理.
+   * 
+   * @param form
+   * @return
+   */
+  @GetMapping("/logout")
+  public String logout(LoginForm form) {
+    session.invalidate();
+    return "redirect:/";
   }
   
 }
