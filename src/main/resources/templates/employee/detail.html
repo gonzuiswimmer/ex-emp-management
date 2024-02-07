@@ -51,7 +51,19 @@
                   <tr>
                     <th nowrap>従業員名</th>
                     <td>
-                      <span th:text="${employee.name}">emp_name</span>
+                      <label
+                        class="control-label"
+                        style="color: red"
+                        for="name"
+                        th:field="*{name}"
+                      ></label>
+                      <input
+                        type="text"
+                        name="name"
+                        id="name"
+                        class="form-control"
+                        th:value="${employee.name}"
+                      />
                     </td>
                   </tr>
                   <tr>
@@ -63,51 +75,158 @@
                   <tr>
                     <th nowrap>性別</th>
                     <td>
-                      <span th:text="${employee.gender}">gender</span>
+                      <input
+                        type="radio"
+                        name="gender"
+                        id="male"
+                        class="form-check-input"
+                        value="男性"
+                        th:checked="${employee.gender == '男性'}"
+                      />
+                      <label
+                      class="form-check-label"
+                      style="color: red"
+                      for="male"
+                      >男性</label>
+                      <input
+                        type="radio"
+                        name="gender"
+                        id="female"
+                        class="form-check-input"
+                        value="女性"
+                        th:checked="${employee.gender == '女性'}"
+                      />
+                      <label
+                      class="form-check-label"
+                      style="color: red"
+                      for="female"
+                      >女性</label>
                     </td>
                   </tr>
                   <tr>
                     <th nowrap>入社日</th>
                     <td>
-                      <span  th:text="${employee.hireDate}">hire_date</span>
+                      <label
+                      class="control-label"
+                      style="color: red"
+                      for="hireDate"
+                      th:field="*{hireDate}"
+                        ></label>
+                        <input
+                          type="date"
+                          name="hireDate"
+                          id="hireDate"
+                          class="form-control"
+                        />
                     </td>
                   </tr>
                   <tr>
                     <th nowrap>メールアドレス</th>
                     <td>
-                      <span th:text="${employee.mailAddress}">mail_address</span>
+                      <label
+                      class="control-label"
+                      style="color: red"
+                      for="mailAddress"
+                      th:field="*{mailAddress}"
+                      ></label>
+                      <input
+                        type="email"
+                        name="mailAddress"
+                        id="mailAddress"
+                        class="form-control"
+                        th:value="${employee.mailAddress}"
+                      />
                     </td>
                   </tr>
                   <tr>
                     <th nowrap>郵便番号</th>
                     <td>
-                      <span th:text="${employee.zipCode}">zip_code</span>
+                      <label
+                      class="control-label"
+                      style="color: red"
+                      for="zipCode"
+                      th:field="*{zipCode}"
+                      ></label>
+                      <input
+                        type="text"
+                        name="zipCode"
+                        id="zipCode"
+                        class="form-control"
+                        th:value="${employee.zipCode}"
+                      />
                     </td>
                   </tr>
                   <tr>
                     <th nowrap>住所</th>
                     <td>
-                      <span th:text="${employee.address}">address</span>
+                      <label
+                      class="control-label"
+                      style="color: red"
+                      for="address"
+                      th:field="*{address}"
+                      ></label>
+                      <input
+                        type="text"
+                        name="address"
+                        id="address"
+                        class="form-control"
+                        th:value="${employee.address}"
+                      />
                     </td>
                   </tr>
                   <tr>
                     <th nowrap>電話番号</th>
                     <td>
-                      <span th:text="${employee.telephone}">phone_number</span>
+                      <label
+                      class="control-label"
+                      style="color: red"
+                      for="telephone"
+                      th:field="*{telephone}"
+                      ></label>
+                      <input
+                        type="text"
+                        name="telephone"
+                        id="telephone"
+                        class="form-control"
+                        th:value="${employee.telephone}"
+                      />
                     </td>
                   </tr>
                   <tr>
                     <th nowrap>給料</th>
                     <td>
-                      <span th:text="${employee.salary}">salary</span>
+                      <label
+                      class="control-label"
+                      style="color: red"
+                      for="salary"
+                      th:field="*{salary}"
+                      ></label>
+                      <input
+                        type="number"
+                        name="salary"
+                        id="salary"
+                        class="form-control"
+                        th:value="${employee.salary}"
+                      />
                     </td>
                   </tr>
                   <tr>
                     <th nowrap>特性</th>
                     <td>
-                      <span  th:text="${employee.characteristics}"
-                        >明るく素直な性格です。リーダーシップを発揮します。新卒社員研修の時はグループ開発の時にリーダーを買ってでました。積極性も人間性も抜群です。周りに対する不満も聞いたことがありません。</span
-                      >
+                      <label
+                      class="control-label"
+                      style="color: red"
+                      for="characteristics"
+                      th:field="*{characteristics}"
+                      ></label>
+                      <textarea
+                        type="text"
+                        name="characteristics"
+                        id="characteristics"
+                        class="form-control"
+                        th:text="${employee.characteristics}"
+                        cols="30" rows="5"
+                      ></textarea>
                     </td>
                   </tr>
                   <tr>
@@ -128,7 +247,6 @@
                         name="dependentsCount"
                         id="dependentsCount"
                         class="form-control"
-                        value="3"
                         th:value="${employee.dependentsCount}"
                       />
                     </td>

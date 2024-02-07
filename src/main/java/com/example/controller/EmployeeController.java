@@ -60,10 +60,18 @@ public class EmployeeController {
         return showDetail(form.getId(),model,form);
       }
       Employee emp = service.showDetail(Integer.parseInt(form.getId()));
+      emp.setName(form.getName());
+      emp.setGender(form.getGender());
+      emp.setHireDate(form.getHireDate());
+      emp.setMailAddress(form.getMailAddress());
+      emp.setZipCode(form.getZipCode());
+      emp.setAddress(form.getAddress());
+      emp.setTelephone(form.getTelephone());
+      emp.setSalary(form.getSalary());
+      emp.setCharacteristics(form.getCharacteristics());
       emp.setDependentsCount(Integer.parseInt(form.getDependentsCount()));
+      
       service.Update(emp);
       return "redirect:/employee/showList";
     }
-  
-    
 }
