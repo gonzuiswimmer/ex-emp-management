@@ -58,21 +58,20 @@
                         class="control-label"
                         style="color: red"
                         for="name"
-                        th:field="*{name}"
                       ></label>
                       <input
                         type="text"
                         name="name"
                         id="name"
                         class="form-control"
-                        th:value="${employee.name}"
+                        th:field="*{name}"
                       />
                     </td>
                   </tr>
                   <tr>
                     <th nowrap>写真</th>
                     <td>
-                      <img src="../../static/img/e2.png"  th:src="${employee.image}" />
+                      <img src="../../static/img/e2.png"  th:field="*{hireDate}" />
                     </td>
                   </tr>
                   <tr>
@@ -84,7 +83,7 @@
                         id="male"
                         class="form-check-input"
                         value="男性"
-                        th:checked="${employee.gender == '男性'}"
+                        th:checked="*{gender == '男性'}"
                       />
                       <label
                       class="form-check-label"
@@ -97,7 +96,7 @@
                         id="female"
                         class="form-check-input"
                         value="女性"
-                        th:checked="${employee.gender == '女性'}"
+                        th:checked="*{gender == '女性'}"
                       />
                       <label
                       class="form-check-label"
@@ -116,13 +115,13 @@
                       class="control-label"
                       style="color: red"
                       for="hireDate"
-                      th:field="*{hireDate}"
                         ></label>
                         <input
                           type="date"
                           name="hireDate"
                           id="hireDate"
                           class="form-control"
+                          th:field="*{hireDate}"
                         />
                     </td>
                   </tr>
@@ -136,14 +135,13 @@
                       class="control-label"
                       style="color: red"
                       for="mailAddress"
-                      th:field="*{mailAddress}"
                       ></label>
                       <input
                         type="email"
                         name="mailAddress"
                         id="mailAddress"
                         class="form-control"
-                        th:value="${employee.mailAddress}"
+                        th:field="*{mailAddress}"
                       />
                     </td>
                   </tr>
@@ -157,14 +155,13 @@
                       class="control-label"
                       style="color: red"
                       for="zipCode"
-                      th:field="*{zipCode}"
                       ></label>
                       <input
                         type="text"
                         name="zipCode"
                         id="zipCode"
                         class="form-control"
-                        th:value="${employee.zipCode}"
+                        th:field="*{zipCode}"
                       />
                     </td>
                   </tr>
@@ -178,14 +175,13 @@
                       class="control-label"
                       style="color: red"
                       for="address"
-                      th:field="*{address}"
                       ></label>
                       <input
                         type="text"
                         name="address"
                         id="address"
                         class="form-control"
-                        th:value="${employee.address}"
+                        th:field="*{address}"
                       />
                     </td>
                   </tr>
@@ -199,14 +195,13 @@
                       class="control-label"
                       style="color: red"
                       for="telephone"
-                      th:field="*{telephone}"
                       ></label>
                       <input
                         type="text"
                         name="telephone"
                         id="telephone"
                         class="form-control"
-                        th:value="${employee.telephone}"
+                        th:field="*{telephone}"
                       />
                     </td>
                   </tr>
@@ -220,14 +215,13 @@
                       class="control-label"
                       style="color: red"
                       for="salary"
-                      th:field="*{salary}"
                       ></label>
                       <input
                         type="number"
                         name="salary"
                         id="salary"
                         class="form-control"
-                        th:value="${employee.salary}"
+                        th:field="*{salary}"
                       />
                     </td>
                   </tr>
@@ -241,14 +235,13 @@
                       class="control-label"
                       style="color: red"
                       for="characteristics"
-                      th:field="*{characteristics}"
                       ></label>
                       <textarea
                         type="text"
                         name="characteristics"
                         id="characteristics"
                         class="form-control"
-                        th:text="${employee.characteristics}"
+                        th:field="*{characteristics}"
                         cols="30" rows="5"
                       ></textarea>
                     </td>
@@ -263,7 +256,6 @@
                         class="control-label"
                         style="color: red"
                         for="dependentsCount"
-                        th:field="*{dependentsCount}"
                       ></label>
                       <input type="hidden" name="id" th:value="*{id}" />
                       <input
@@ -271,7 +263,7 @@
                         name="dependentsCount"
                         id="dependentsCount"
                         class="form-control"
-                        th:value="${employee.dependentsCount}"
+                        th:field="*{dependentsCount}"
                       />
                     </td>
                   </tr>

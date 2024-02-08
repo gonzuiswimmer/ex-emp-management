@@ -2,6 +2,7 @@ package com.example.controller;
 
 import java.util.List;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,7 +40,9 @@ public class EmployeeController {
   @GetMapping("/showDetail")
   public String showDetail(String id, Model model, UpdateEmployeeForm form) {
     Employee emp = service.showDetail(Integer.parseInt(id));
-    model.addAttribute("employee", emp);
+    BeanUtils.copyProperties(emp, form);
+    form.setDependentsCount(emp.getDependentsCount().toString());
+    
     return "employee/detail";
   }
   

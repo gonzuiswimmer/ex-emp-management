@@ -7,12 +7,11 @@ import jakarta.validation.constraints.Pattern;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class UpdateEmployeeForm {
   /** ID */
   private String id;
-  /** 扶養人数 */
-  @NotEmpty(message = "扶養人数を指定してください")
-  private String dependentsCount;
   /** 名前 */
   @NotEmpty(message = "名前は必須です")
   private String name;
@@ -22,6 +21,7 @@ public class UpdateEmployeeForm {
   private String gender;
   /** 入社日 */
   @NotNull(message = "入社日は必須です")
+  @DateTimeFormat(pattern = "yyyy-MM-dd")
   private Date hireDate;
   /** メールアドレス */
   @NotEmpty(message = "メールアドレスは必須です")
@@ -43,7 +43,9 @@ public class UpdateEmployeeForm {
   /** 特性 */
   @NotEmpty(message = "特徴を記入してください")
   private String characteristics;
-
+  /** 扶養人数 */
+  @NotEmpty(message = "扶養人数を指定してください")
+  private String dependentsCount;
 
   public String getId() {
     return id;
