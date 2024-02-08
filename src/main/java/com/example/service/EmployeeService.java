@@ -20,8 +20,8 @@ public class EmployeeService {
    * 
    * @return List<Employee> 従業員リスト
    */
-  public List<Employee> showList(){
-    return repostitory.findAll();
+  public List<Employee> showList(int limit, int offset){
+    return repostitory.findAll(limit, offset);
   }
 
   /**

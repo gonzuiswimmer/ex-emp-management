@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.domain.Administrator;
 import com.example.domain.Employee;
@@ -28,6 +29,8 @@ public class EmployeeController {
   private EmployeeService service;
   @Autowired
   private HttpSession session;
+  private int currentPage;
+  private static final int LIMIT = 10;
   
   /**
    * 従業員一覧画面にフォワード.
@@ -36,9 +39,15 @@ public class EmployeeController {
    * @return 従業員一覧画面
    */
   @GetMapping("/showList")
-  public String showList(Model model) {
-    List<Employee> emp_list = service.showList();
-    model.addAttribute("employeeList", emp_list);
+  public String showList(Model model, @RequestParam(name = "page", defaultValue = "0") Integer page) {
+    if(page == 0 || page < 0){
+      this.currentPage = 0;
+    }else{
+      this.currentPage = page;
+    }
+    int offset = currentPage * LIMIT;
+    List<Employee> emp_list = service.showList(LIMIT, offset);
+    model.addAttribute("employeeList", emp_list).addAttribute("page", currentPage);
 
     if(isLogin()){
       return "employee/list";

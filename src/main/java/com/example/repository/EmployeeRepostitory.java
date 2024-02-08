@@ -39,7 +39,8 @@ public class EmployeeRepostitory {
   private static final String FIND_ALL_SQL = """
     SELECT id, name, image, gender, hire_date, mail_address, zip_code, address, telephone, salary, characteristics, dependents_count
       FROM employees
-        ORDER BY hire_date DESC;
+        ORDER BY hire_date DESC
+        LIMIT :limit OFFSET :offset;
   """;
   
   private static final String LOAD_SQL = """
@@ -69,8 +70,8 @@ public class EmployeeRepostitory {
    * 
    * @return List<Employee> 管理者リスト
    */
-  public List<Employee> findAll(){
-    SqlParameterSource param = new MapSqlParameterSource();
+  public List<Employee> findAll(int limit, int offset){
+    SqlParameterSource param = new MapSqlParameterSource().addValue("limit", limit).addValue("offset", offset);
     return template.query(FIND_ALL_SQL, param, EMPLOYEE_ROW_MAPPER);
   }
 

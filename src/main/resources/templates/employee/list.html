@@ -70,6 +70,16 @@
           <!-- ここから下を編集する必要はありません -->
         </div>
       </div>
+      <form class="" th:action="@{/employee/showList}" method="get">
+        <th:block th:unless="${#lists.isEmpty(employeeList)}">
+          <input type="submit" name="page" th:value="${page}-1" th:text="戻る">
+          <input type="submit" name="page" th:value="${page}+1"th:text="次へ">
+        </th:block>
+        <th:block th:if="${#lists.isEmpty(employeeList)}">
+          該当のユーザーがいません
+          <input type="submit" name="page" th:value="${page}-1" th:text="戻る">
+        </th:block>
+      </form>
     </div>
     <!-- end container -->
 
