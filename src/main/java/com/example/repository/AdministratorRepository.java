@@ -23,6 +23,7 @@ public class AdministratorRepository {
 
   private static final RowMapper<Administrator> ADMINISTRATOR_ROW_MAPPER = (rs, i) -> {
     Administrator admin = new Administrator();
+    admin.setId(rs.getInt("id"));
     admin.setName(rs.getString("name"));
     admin.setMailAddress(rs.getString("mail_address"));
     admin.setPassword(rs.getString("password"));
@@ -41,6 +42,14 @@ public class AdministratorRepository {
       FROM administrators
         WHERE mail_address = :mail_address
           AND password = :password;
+  """;
+
+  private static final String UPDATE_SQL = """
+    UPDATE administrators SET
+      name = :name,
+      mail_address = :mail_address,
+      password = :password
+        WHERE id = :id;
   """;
 
   /**
@@ -68,5 +77,21 @@ public class AdministratorRepository {
       return null;
     }
     return admin_list.get(0);
+  }
+
+    /**
+   * 管理者更新処理.
+   * 
+   * @param admin 管理者クラス.
+   * @return void
+   */
+  public void update(Administrator admin){
+    SqlParameterSource param = new MapSqlParameterSource()
+    .addValue("id", admin.getId())
+    .addValue("name", admin.getName())
+    .addValue("mail_address", admin.getMailAddress())
+    .addValue("password", admin.getPassword());
+    
+    template.update(UPDATE_SQL, param);
   }
 }

@@ -11,12 +11,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.domain.Administrator;
 import com.example.form.InsertAdministratorForm;
 import com.example.form.LoginForm;
+import com.example.form.UpdateAdministratorForm;
 import com.example.service.AdministratorService;
 
 import jakarta.servlet.http.HttpSession;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+
 
 
 @Controller
@@ -88,10 +90,38 @@ public class AdministratorController {
       System.out.println("エラー発生");
       return "administrator/login";
     } else {
-      session.setAttribute("administratorName", admin.getName());
+      session.setAttribute("admin", admin);
       return "redirect:/employee/showList";
     }
   }
+
+  @GetMapping("/edit_admin")
+  public String editAdmin(UpdateAdministratorForm form, Model model) {
+    BeanUtils.copyProperties(session.getAttribute("admin"), form);
+    return "administrator/edit";
+  }
+
+  @PostMapping("/update")
+  public String update(
+    @Validated
+    UpdateAdministratorForm form,
+    BindingResult rs,
+    Model model
+  ) {
+    if(rs.hasErrors()){
+      System.out.println("エラー発生");
+      return editAdmin(form, model);
+    }
+    Administrator admin = (Administrator) session.getAttribute("admin");
+    admin.setName(form.getName());
+    admin.setMailAddress(form.getMailAddress());
+    admin.setPassword(form.getPassword());
+
+    service.update(admin);
+    return "redirect:/employee/showList";
+  }
+  
+  
 
   /**
    * ログアウト処理.

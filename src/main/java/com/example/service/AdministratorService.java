@@ -33,4 +33,14 @@ public class AdministratorService {
   public Administrator login(String mailAddress, String password){
     return repository.findByMailAddressAndPassword(mailAddress, password);
   }
+
+  /**
+   * 管理者情報の更新処理.
+   * 
+   * @param admin 管理者オブジェクト
+   * @return void
+   */
+  public void update(Administrator admin){
+    repository.update(admin);
+  }
 }

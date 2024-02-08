@@ -42,8 +42,9 @@
         <ul class="nav navbar-nav">
           <li class="active"><a href="list.html">従業員管理</a></li>
         </ul>
+        <a th:href="@{/edit_admin}">管理者情報の編集はこちら</a>
         <p class="navbar-text navbar-right">
-          <span th:text="${session.administratorName + 'さん'}"
+          <span th:text="${session.admin.name + 'さん'}"
             >山田さん</span
           >こんにちは！ &nbsp;&nbsp;&nbsp;
           <a href="../administrator/login.html" class="navbar-link" th:href="@{/logout}"
