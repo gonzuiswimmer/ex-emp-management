@@ -10,9 +10,12 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.example.domain.Administrator;
 import com.example.domain.Employee;
 import com.example.form.UpdateEmployeeForm;
 import com.example.service.EmployeeService;
+
+import jakarta.servlet.http.HttpSession;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,6 +26,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class EmployeeController {
   @Autowired
   private EmployeeService service;
+  @Autowired
+  private HttpSession session;
   
   /**
    * 従業員一覧画面にフォワード.
@@ -34,7 +39,12 @@ public class EmployeeController {
   public String showList(Model model) {
     List<Employee> emp_list = service.showList();
     model.addAttribute("employeeList", emp_list);
-    return "employee/list";
+
+    if(isLogin()){
+      return "employee/list";
+    } else{
+      return "redirect:/";
+    }
   }
 
   @GetMapping("/showDetail")
@@ -43,7 +53,11 @@ public class EmployeeController {
     BeanUtils.copyProperties(emp, form);
     form.setDependentsCount(emp.getDependentsCount().toString());
     
-    return "employee/detail";
+    if(isLogin()){
+      return "employee/detail";
+    } else{
+      return "redirect:/";
+    }
   }
   
   /**
@@ -75,6 +89,24 @@ public class EmployeeController {
       emp.setDependentsCount(Integer.parseInt(form.getDependentsCount()));
       
       service.Update(emp);
-      return "redirect:/employee/showList";
+
+      if(isLogin()){
+        return "redirect:/employee/showList";
+      }else{
+        return "redirect:/";
+      }
     }
+
+  /**
+   * ログイン済みかどうかを判定する.
+   * 
+   * @return boolean
+   */
+  public boolean isLogin(){
+    Administrator admin = (Administrator) session.getAttribute("admin");
+    if(admin == null){
+      return false;
+    }
+    return true;
+  }
 }
